@@ -23,6 +23,10 @@ public class SpaceInvaders implements Jeu {
 		Position positionVaisseau = new Position(this.longueur/2,this.hauteur-1);
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
+		Position positionMissile = new Position(this.longueur/2+Constante.VAISSEAU_LONGUEUR/2,this.hauteur-Constante.VAISSEAU_HAUTEUR);
+		Dimension dimensionMissile= new Dimension(Constante.MISSILE_LARGEUR, Constante.MISSILE_HAUTEUR);
+		missile=new Missile(positionMissile,dimensionMissile, Constante.MISSILE_VITESSE);
+
 	 }
 
 	public String recupererEspaceJeuDansChaineASCII() {
@@ -50,7 +54,7 @@ public class SpaceInvaders implements Jeu {
 		return this.aUnMissile() && missile.occupeLaPosition(x, y);
 	}
 
-	private boolean aUnMissile() {
+	public boolean aUnMissile() {
 		return missile != null;
 	}
 
@@ -107,6 +111,9 @@ public class SpaceInvaders implements Jeu {
 	public Vaisseau recupererVaisseau() {
 		return this.vaisseau;
 	}
+	public Missile recupererUnMissile() {
+		return this.missile;
+	}
 
 	@Override
 	public void evoluer(Commande commandeUser) {
@@ -118,8 +125,12 @@ public class SpaceInvaders implements Jeu {
 		if (commandeUser.droite) {
 			deplacerVaisseauVersLaDroite();
 		}
-
+		if (commandeUser.espace && !this.aUnMissile())
+	           tirerUnMissile(new Dimension(Constante.MISSILE_LARGEUR, Constante.MISSILE_HAUTEUR),
+						Constante.MISSILE_VITESSE);
 	}
+
+	
 
 	@Override
 	public boolean etreFini() {
@@ -127,9 +138,10 @@ public class SpaceInvaders implements Jeu {
 
 	}
 
-	public void tirerUnMissile(Dimension dimension, int vitesse) {
-		this.missile = this.vaisseau.tirerUnMissile(dimension,vitesse);
+	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
+		this.missile = this.vaisseau.tirerUnMissile(dimensionMissile,vitesseMissile);
 		
 	}
+
 
 }
