@@ -69,7 +69,7 @@ public class Controleur implements KeyListener {
 			this.commandeEnCours.bas = true;
 			this.commandeARetourner.bas = true;
 			break;
-		case ' ':
+		case 't':
 			this.commandeEnCours.espace = true;
 			this.commandeARetourner.espace = true;
 			break;
@@ -95,7 +95,7 @@ public class Controleur implements KeyListener {
 		case 's':
 			this.commandeEnCours.bas = false;
 			break;
-		case ' ':
+		case 't':
 			this.commandeEnCours.espace = false;
 			break;
 		}

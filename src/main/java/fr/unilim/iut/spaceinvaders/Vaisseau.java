@@ -25,11 +25,9 @@ private Position calculerLaPositionDeTirDuMissile(Dimension dimensionMissile) {
 	int abscisseOrigineMissile = abscisseMilieuVaisseau - (dimensionMissile.longueur() / 2);
 
 	int ordonneeeOrigineMissile = this.ordonneeLaPlusBasse() - 1;
-	Position positionOrigineMissile = calculerLaPositionDeTirDuMissile(abscisseOrigineMissile, ordonneeeOrigineMissile);
+	Position positionOrigineMissile = new Position(abscisseOrigineMissile, ordonneeeOrigineMissile);
 	return positionOrigineMissile;
 }
 
-private Position calculerLaPositionDeTirDuMissile(int abscisseOrigineMissile, int ordonneeeOrigineMissile) {
-	return new Position(abscisseOrigineMissile, ordonneeeOrigineMissile);
-}
+
 }
